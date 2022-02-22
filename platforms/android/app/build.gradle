@@ -19,6 +19,10 @@
 
 apply plugin: 'com.android.application'
 
+def SDK_VERSION_CODE=650
+def SDK_VERSION="6.5.0"
+def SDK_QUALIFIER="rc08"
+
 if (cdvHelpers.getConfigPreference('GradlePluginKotlinEnabled', 'false').toBoolean()) {
     apply plugin: 'kotlin-android'
     apply plugin: 'kotlin-android-extensions'
@@ -338,7 +342,22 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation fileTree(dir: 'libs', include: ['*.jar','*.aar'])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.media:media:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
+    //fcm
+    implementation "com.google.android.gms:play-services-base:17.4.0"
+    implementation "com.google.firebase:firebase-messaging:20.2.4"
+
+    //sdk's dependencies
+    implementation 'net.java.dev.jna:jna:5.5.0@aar'
 
     if (cdvHelpers.getConfigPreference('GradlePluginKotlinEnabled', 'false').toBoolean()) {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

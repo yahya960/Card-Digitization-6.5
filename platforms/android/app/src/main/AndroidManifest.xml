@@ -1,7 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
 <manifest android:hardwareAccelerated="true" android:versionCode="10000" android:versionName="1.0.0" package="com.example.hello" xmlns:android="http://schemas.android.com/apk/res/android">
     <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true" />
+    <!-- Permissions to be set -->
+    <!-- internet is needed for TSHPaySDK to perform wallet and card enrolment and keys replenishemnt -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- For TSHPaySDK to be able to use NFC -->
+    <uses-permission android:name="android.permission.NFC" />
+    <!-- When targetSDKVersion >= 28, it is mandatory to set this permission to start foreground service -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- In  case the Appliaction uses the biometric as CDCVM -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <!--Even if deprecated from Android 10, this is needed for Android 9 and below -->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+    <!-- Declare the use of NFC service -->
+    <uses-feature android:name="android.hardware.nfc" />
+    <!-- Declare the use of NFC HCE -->
+    <uses-feature android:name="android.hardware.nfc.hce" />
+
     <application android:hardwareAccelerated="true" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:supportsRtl="true">
         <activity android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode" android:label="@string/activity_name" android:launchMode="singleTop" android:name="MainActivity" android:theme="@android:style/Theme.DeviceDefault.NoActionBar" android:windowSoftInputMode="adjustResize">
             <intent-filter android:label="@string/launcher_name">
